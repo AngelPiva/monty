@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
 	char **arr = NULL;
 	stack_t **stack = NULL;
 	FILE *_ofile = NULL;
+	int n = 0;
+
 	(void)argc;
 
 	stack = malloc(sizeof(stack_t));
@@ -31,6 +33,12 @@ int main(int argc, char *argv[])
 		identify(arr, stack, line_number);
 		line_number++;
 	}
+	while (arr[n])
+	{
+		free(arr[n]);
+		n++;
+	}
+	free(arr);
 
 	return (1);
 }
