@@ -18,18 +18,17 @@ void free_array(char **arr)
 }
 
 /**
- *free_dlistint - frees a dlistint_t list
+ *free_stack - frees a dlistint_t list
  *@head: head
  */
 
-void free_dlistint(stack_t **head)
+void free_stack(stack_t **head)
 {
 	stack_t *x = NULL;
 
 	while (*head)
 	{
 		x = *head;
-		free(x->prev);
 		*head = (*head)->next;
 		free(x);
 	}

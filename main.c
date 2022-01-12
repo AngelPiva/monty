@@ -15,9 +15,12 @@ int main(int argc, char *argv[])
 	char **arr = NULL;
 	stack_t **stack = NULL;
 	FILE *_ofile = NULL;
-	int n = 0;
 
-	(void)argc;
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 
 	stack = malloc(sizeof(stack_t));
 	if (!stack)
@@ -25,21 +28,19 @@ int main(int argc, char *argv[])
 
 	_ofile = fopen(argv[1], "r");
 	if (!_ofile)
-		return (-1);
-
+	{
+		fprintf(stderr, "Can't open file <%s>\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
 	while (getline(&buffer, &size, _ofile) != -1)
 	{
 		arr = tokenizer(buffer, " \n\t");
 		identify(arr, stack, line_number);
 		line_number++;
 	}
-	while (arr[n])
-	{
-		free(arr[n]);
-		n++;
-	}
-	free(arr);
-
+	free_array(arr);
+	free_stack(stack);
+	fclose(_ofile);
 	return (1);
 }
 
@@ -76,5 +77,10 @@ void identify(char **arr, stack_t **stack, unsigned int line_number)
 			break;
 		}
 		n++;
+	}
+	if (compare == NULL)
+	{
+		fprintf(stderr, "L<%d>: unknown instruction <%s>\n", line_number, arr[0]);
+		exit(EXIT_FAILURE);
 	}
 }
