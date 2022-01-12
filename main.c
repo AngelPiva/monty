@@ -2,6 +2,8 @@
 
 /**
  *main - main function
+ *@argc: arguments count
+ *@argv: arguments value
  *Return: 1 on succes, -1 on failury
  */
 
