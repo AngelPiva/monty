@@ -15,7 +15,7 @@ char **tokenizer(char *buffer, char *separator)
 
 	while (buffer[n])
 	{
-		if (buffer[n] == 0)
+		if (buffer[n] == 0 || buffer[n] == '#')
 		{
 			return (NULL);
 		}

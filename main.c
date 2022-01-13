@@ -62,13 +62,9 @@ int identify(char **arr, stack_t **stack, unsigned int line_number)
 	int n = 0, status = 0;
 	char *compare = NULL;
 	instruction_t identifiers[] = {
-	{"push", NULL},
-	{"pall", _pall},
-	{"pint", _pint},
-	{"pop", _pop},
-	{"nop", _nop},
-	{"swap", _swap},
-	{"add", _add},
+	{"push", NULL}, {"pall", _pall}, {"pint", _pint}, {"pop", _pop},
+	{"nop", _nop}, {"swap", _swap}, {"add", _add}, {"sub", _sub},
+	{"div", _div}, {"mul", _mul}, {"mod", _mod},
 	{NULL, NULL}
 	};
 
