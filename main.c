@@ -9,39 +9,45 @@
 
 int main(int argc, char *argv[])
 {
-	char *buffer = NULL;
-	size_t size = 0;
-	unsigned int line_number = 1;
-	char **arr = NULL;
-	stack_t **stack = NULL;
-	FILE *_ofile = NULL;
+        char *buffer = NULL;
+        size_t size = 0;
+        unsigned int line_number = 1;
+        int status = 0;
+        char **arr = NULL;
+        stack_t **stack = NULL;
+        FILE *_ofile = NULL;
 
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
+        if (argc != 2)
+        {
+                fprintf(stderr, "USAGE: monty file\n");
+                exit(EXIT_FAILURE);
+        }
 
-	stack = malloc(sizeof(stack_t));
-	if (!stack)
-		return (-1);
-
-	_ofile = fopen(argv[1], "r");
-	if (!_ofile)
-	{
-		fprintf(stderr, "Can't open file <%s>\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
-	while (getline(&buffer, &size, _ofile) != -1)
-	{
-		arr = tokenizer(buffer, " \n\t");
-		identify(arr, stack, line_number);
-		line_number++;
-	}
-	free_array(arr);
-	free_stack(stack);
-	fclose(_ofile);
-	return (1);
+        stack = malloc(sizeof(stack_t));
+        if (!stack)
+        {
+                fprintf(stderr, "Error: malloc failed");
+                exit(EXIT_FAILURE);
+        }
+        _ofile = fopen(argv[1], "r");
+        if (!_ofile)
+        {
+                fprintf(stderr, "Can't open file <%s>\n", argv[1]);
+                exit(EXIT_FAILURE);
+        }
+        while (getline(&buffer, &size, _ofile) != -1)
+        {
+                arr = tokenizer(buffer, " \n\t");
+                identify(arr, stack, line_number);
+                line_number++;
+                free(arr);
+        }
+        free(buffer);
+        free_stack(stack);
+        fclose(_ofile);
+        if (status == -1)
+                exit(EXIT_FAILURE);
+        return (0);
 }
 
 /**
@@ -51,41 +57,44 @@ int main(int argc, char *argv[])
  *@line_number: line number
 */
 
-void identify(char **arr, stack_t **stack, unsigned int line_number)
+int identify(char **arr, stack_t **stack, unsigned int line_number)
 {
-	int n = 0;
-	char *compare = NULL;
-	instruction_t identifiers[] = {
-	{"push", NULL},
-	{"pall", _pall},
-	{"pint", _pint},
-	/*{"pop", _pop},
-	{"swap", _swap},
-	{"add", _add},
-	{"nop", _nop},*/
-	{NULL, NULL}
-	};
+        int n = 0, status = 0;
+        char *compare = NULL;
+        instruction_t identifiers[] = {
+        {"push", NULL},
+        {"pall", _pall},
+        {"pint", _pint},
+        /*{"pop", _pop},
+        {"swap", _swap},
+        {"add", _add},
+        {"nop", _nop},*/
+        {NULL, NULL}
+        };
 
-	while (identifiers[n].opcode != NULL)
-	{
-		compare = strstr(arr[0], identifiers[n].opcode);
-		if (compare != NULL)
-		{
-			if (strstr("push", arr[0]) != NULL)
-			{
-				_push(arr, stack, line_number);
-			}
-			else
-			{
-				identifiers[n].f(stack, line_number);
-			}
-			break;
-		}
-		n++;
-	}
-	if (compare == NULL)
-	{
-		fprintf(stderr, "L<%d>: unknown instruction <%s>\n", line_number, arr[0]);
-		exit(EXIT_FAILURE);
-	}
+        while (identifiers[n].opcode != NULL)
+        {
+                compare = strstr(arr[0], identifiers[n].opcode);
+                if (compare != NULL)
+                {
+                        if (strstr("push", arr[0]) != NULL)
+                        {
+                                status = _push(arr, stack, line_number);
+                                if (status == -1)
+                                        return (-1);
+                        }
+                        else
+                        {
+                                identifiers[n].f(stack, line_number);
+                        }
+                        break;
+                }
+                n++;
+        }
+        if (compare == NULL)
+        {
+                fprintf(stderr, "L<%d>: unknown instruction <%s>\n", line_number, arr[0]);
+                return (-1);
+        }
+return (0);
 }
