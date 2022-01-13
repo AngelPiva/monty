@@ -58,6 +58,11 @@ void identify(char **arr, stack_t **stack, unsigned int line_number)
 	instruction_t identifiers[] = {
 	{"push", NULL},
 	{"pall", _pall},
+	{"pint", _pint},
+	/*{"pop", _pop},
+	{"swap", _swap},
+	{"add", _add},
+	{"nop", _nop},*/
 	{NULL, NULL}
 	};
 

@@ -42,6 +42,11 @@ char **tokenizer(char *buffer, char *separator);
 void identify(char **arr, stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _push(char **arr, stack_t **stack, unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
+void _swap(stack_t **stack, unsigned int line_number);
+void _add(stack_t **stack, unsigned int line_number);
+void _nop(stack_t **stack, unsigned int line_number);
 
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 
