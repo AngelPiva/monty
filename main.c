@@ -21,7 +21,6 @@ int main(int argc, char *argv[])
 	{
 		fprintf(stderr, "USAGE: monty file\n"), exit(EXIT_FAILURE);
 	}
-
 	stack = malloc(sizeof(stack_t));
 	if (!stack)
 	{
@@ -45,12 +44,9 @@ int main(int argc, char *argv[])
 		line_number++;
 		free(arr);
 	}
-	free(buffer);
-	free_stack(stack);
-	fclose(_ofile);
+	free(buffer), free_stack(stack), fclose(_ofile);
 	return (0);
 }
-
 /**
  *identify - identifies commands on the input string.
  *@arr: buffer separated by tokens.
@@ -72,7 +68,6 @@ int identify(char **arr, stack_t **stack, unsigned int line_number)
 	/*
 	*{"swap", _swap},
 	*{"add", _add},
-	*{"nop", _nop},
 	*/
 	{NULL, NULL}
 	};
