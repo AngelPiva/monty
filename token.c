@@ -15,6 +15,10 @@ char **tokenizer(char *buffer, char *separator)
 
 	while (buffer[n])
 	{
+		if (buffer[n] == 0)
+		{
+			return (NULL);
+		}
 		if (buffer[n] == separator[0])
 		{
 			if (buffer[n + 1] && buffer[n + 1] != separator[0])

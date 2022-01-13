@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
 	while (getline(&buffer, &size, _ofile) != -1)
 	{
 		arr = tokenizer(buffer, " \n\t");
+		if (arr == NULL)
+			continue;
 		status = identify(arr, stack, line_number);
 		if (status == -1)
 		{
@@ -66,9 +68,7 @@ int identify(char **arr, stack_t **stack, unsigned int line_number)
 	{"pop", _pop},
 	{"nop", _nop},
 	{"swap", _swap},
-	/*
-	*{"add", _add},
-	*/
+	{"add", _add},
 	{NULL, NULL}
 	};
 
