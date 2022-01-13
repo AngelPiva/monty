@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	_ofile = fopen(argv[1], "r");
 	if (!_ofile)
 	{
-		fprintf(stderr, "Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Can't open file <%s>\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	while (getline(&buffer, &size, _ofile) != -1)
@@ -89,7 +89,7 @@ int identify(char **arr, stack_t **stack, unsigned int line_number)
 	}
 	if (compare == NULL)
 	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, arr[0]);
+		fprintf(stderr, "L<%d>: unknown instruction %s\n", line_number, arr[0]);
 		return (-1);
 	}
 	return (0);
