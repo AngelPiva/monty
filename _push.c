@@ -15,7 +15,7 @@ int _push(char **arr, stack_t **stack, unsigned int line_number)
 
 	if (value == NULL)
 	{
-		fprintf(stderr, "L<%d>: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		return (-1);
 	}
 	for (i = 0; value[i]; i++)
@@ -23,7 +23,7 @@ int _push(char **arr, stack_t **stack, unsigned int line_number)
 		if (((value[i] < '0' || value[i] > '9') && (value[0] != '-')) ||
 				(value[i] < '0' || value[i] > '9'))
 		{
-			fprintf(stderr, "L<%d>: usage: push integer\n", line_number);
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			return (-1);
 		}
 	}
