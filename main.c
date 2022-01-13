@@ -65,8 +65,8 @@ int identify(char **arr, stack_t **stack, unsigned int line_number)
 	{"pint", _pint},
 	{"pop", _pop},
 	{"nop", _nop},
+	{"swap", _swap},
 	/*
-	*{"swap", _swap},
 	*{"add", _add},
 	*/
 	{NULL, NULL}

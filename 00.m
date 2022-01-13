@@ -1,5 +1,6 @@
-nop
-push 45
 push 1
-push -243ew
+push 2
+push 3
+pall
+swap
 pall
