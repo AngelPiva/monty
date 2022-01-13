@@ -47,7 +47,7 @@ void  _pop(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
 void _add(stack_t **stack, unsigned int line_number);
 void _nop(stack_t **stack, unsigned int line_number);
-
+int init_stack(stack_t **stack);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 
 void free_array(char **arr);
