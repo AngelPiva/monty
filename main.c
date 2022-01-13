@@ -19,15 +19,13 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "USAGE: monty file\n"), exit(EXIT_FAILURE);
 	}
 
 	stack = malloc(sizeof(stack_t));
 	if (!stack)
 	{
-		fprintf(stderr, "Error: malloc failed");
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "Error: malloc failed"), exit(EXIT_FAILURE);
 	}
 	_ofile = fopen(argv[1], "r");
 	if (!_ofile)
@@ -41,9 +39,7 @@ int main(int argc, char *argv[])
 		status = identify(arr, stack, line_number);
 		if (status == -1)
 		{
-			free(arr);
-			free_stack(stack);
-			free(buffer);
+			free(arr), free_stack(stack), free(buffer), fclose(_ofile);
 			exit(EXIT_FAILURE);
 		}
 		line_number++;
