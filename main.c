@@ -38,15 +38,20 @@ int main(int argc, char *argv[])
 	while (getline(&buffer, &size, _ofile) != -1)
 	{
 		arr = tokenizer(buffer, " \n\t");
-		identify(arr, stack, line_number);
+		status = identify(arr, stack, line_number);
+		if (status == -1)
+		{
+			free(arr);
+			free_stack(stack);
+			free(buffer);
+			exit(EXIT_FAILURE);
+		}
 		line_number++;
 		free(arr);
 	}
 	free(buffer);
 	free_stack(stack);
 	fclose(_ofile);
-	if (status == -1)
-		exit(EXIT_FAILURE);
 	return (0);
 }
 
