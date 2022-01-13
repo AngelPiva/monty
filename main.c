@@ -55,6 +55,7 @@ int main(int argc, char *argv[])
  *@arr: buffer separated by tokens.
  *@stack: doubly linked list where integers are stored
  *@line_number: line number
+ *Return: 0 in success, -1 in failure
 */
 
 int identify(char **arr, stack_t **stack, unsigned int line_number)
@@ -65,10 +66,12 @@ int identify(char **arr, stack_t **stack, unsigned int line_number)
 	{"push", NULL},
 	{"pall", _pall},
 	{"pint", _pint},
-	/*{"pop", _pop},
-	{"swap", _swap},
-	{"add", _add},
-	{"nop", _nop},*/
+	/*
+	*{"pop", _pop},
+	*{"swap", _swap},
+	*{"add", _add},
+	*{"nop", _nop},
+	*/
 	{NULL, NULL}
 	};
 

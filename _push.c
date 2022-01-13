@@ -5,6 +5,7 @@
  *@arr: array with tokens
  *@stack: stack
  *@line_number: line number
+ *Return: 0 in success, -1 in failure
  */
 
 int _push(char **arr, stack_t **stack, unsigned int line_number)
