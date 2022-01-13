@@ -20,7 +20,8 @@ int _push(char **arr, stack_t **stack, unsigned int line_number)
 	}
 	for (i = 0; value[i]; i++)
 	{
-		if (value[0] < '0' || value[0] > '9')
+		if (((value[i] < '0' || value[i] > '9') && (value[0] != '-')) ||
+				(value[i] < '0' || value[i] > '9'))
 		{
 			fprintf(stderr, "L<%d>: usage: push integer\n", line_number);
 			return (-1);
