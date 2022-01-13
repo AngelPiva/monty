@@ -7,14 +7,14 @@
 
 void free_array(char **arr)
 {
-	int n = 0;
+        int n = 0;
 
-	while (arr[n])
-	{
-		free(arr[n]);
-		n++;
-	}
-	free(arr);
+        while (arr[n])
+        {
+                free(arr[n]);
+                n++;
+        }
+        free(arr);
 }
 
 /**
@@ -24,14 +24,15 @@ void free_array(char **arr)
 
 void free_stack(stack_t **head)
 {
-	stack_t *x = NULL;
+        stack_t *x = NULL;
 
-	while (*head)
-	{
-		x = *head;
-		*head = (*head)->next;
-		free(x);
-	}
-	free(*head);
-	*head = NULL;
+        x = *head;
+
+        while (*head != NULL)
+        {
+                x = (*head)->next;
+                free(*head);
+                *head = x;
+        }
+        free(head);
 }
