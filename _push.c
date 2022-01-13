@@ -7,7 +7,7 @@
  *@line_number: line number
  */
 
-void _push(char **arr, stack_t **stack, unsigned int line_number)
+int _push(char **arr, stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 	char *value = arr[1];
@@ -15,15 +15,16 @@ void _push(char **arr, stack_t **stack, unsigned int line_number)
 	if (value == NULL)
 	{
 		fprintf(stderr, "L<%d>: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		return (-1);
 	}
 	for (i = 0; value[i]; i++)
 	{
 		if (value[0] < '0' || value[0] > '9')
 		{
 			fprintf(stderr, "L<%d>: usage: push integer\n", line_number);
-			exit(EXIT_FAILURE);
+			return (-1);
 		}
 	}
 	add_nodeint(stack, atoi(arr[1]));
+	return (0);
 }

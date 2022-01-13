@@ -9,15 +9,23 @@
 
 char **tokenizer(char *buffer, char *separator)
 {
-	int i = 0;
+	int i = 0, n = 0, count = 1;
 	char **tokenized = NULL;
 	char *token = NULL;
-	size_t size = 1024;
 
+	while (buffer[n])
+	{
+		if (buffer[n] == separator[0])
+		{
+			if (buffer[n + 1] && buffer[n + 1] != separator[0])
+				count++;
+		}
+		n++;
+	}
 	token = strtok(buffer, separator);
 	if (token == NULL)
 		return (NULL);
-	tokenized = malloc(sizeof(char *) * size);
+	tokenized = malloc(sizeof(char *) * (count + 1));
 	if (tokenized == NULL)
 		return (NULL);
 

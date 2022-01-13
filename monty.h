@@ -39,11 +39,11 @@ typedef struct instruction_s
 stack_t *addto(stack_t **head, const int n);
 stack_t *add_nodeint(stack_t **head, const int n);
 char **tokenizer(char *buffer, char *separator);
-void identify(char **arr, stack_t **stack, unsigned int line_number);
+int identify(char **arr, stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
-void _push(char **arr, stack_t **stack, unsigned int line_number);
+int _push(char **arr, stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
-void _pop(stack_t **stack, unsigned int line_number);
+void  _pop(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
 void _add(stack_t **stack, unsigned int line_number);
 void _nop(stack_t **stack, unsigned int line_number);

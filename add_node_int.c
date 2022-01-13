@@ -9,13 +9,14 @@
 
 stack_t *add_nodeint(stack_t **head, const int n)
 {
-	stack_t *new = NULL;
+	stack_t *new = NULL, *tmp = *head;
+
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 		return (NULL);
 	new->n = n;
-	if (*head == NULL)
+	if (tmp == NULL)
 	{
 		new->next = *head;
 		new->prev = NULL;
