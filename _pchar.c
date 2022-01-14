@@ -6,7 +6,7 @@
  */
 void _pchar(stack_t **stack, unsigned int line_number)
 {
-	if(!*stack)
+	if (!*stack)
 	{
 		fprintf(stderr, "L<%d>: can't pchar, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
