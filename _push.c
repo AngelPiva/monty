@@ -20,11 +20,13 @@ int _push(char **arr, stack_t **stack, unsigned int line_number)
 	}
 	for (i = 0; value[i]; i++)
 	{
-		if (((value[i] < '0' || value[i] > '9') && (value[0] != '-')) ||
-				(value[i] < '0' || value[i] > '9'))
+		if ((value[i] < '0' || value[i] > '9') && (value[0] != '-'))
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			return (-1);
+			if (value[i] < '0' || value[i] > '9')
+			{
+				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				return (-1);
+			}
 		}
 	}
 	add_nodeint(stack, atoi(arr[1]));
