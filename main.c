@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	_ofile = fopen(argv[1], "r");
 	if (!_ofile)
 	{
-		fprintf(stderr, "Can't open file <%s>\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	while (getline(&buffer, &size, _ofile) != -1)
