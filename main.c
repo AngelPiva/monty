@@ -94,7 +94,7 @@ int identify(char **arr, stack_t **stack, unsigned int line_number)
 	if ((compare == NULL) || ((strncmp(opcode, "push", 4) == 0) &&
 				(strlen(opcode) != 4)))
 	{
-		fprintf(stderr, "L<%d>: unknown instruction %s\n", line_number, arr[0]);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, arr[0]);
 		return (-1);
 	}
 	return (0);
