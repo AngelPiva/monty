@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- *_pstr -  prints the string starting at the top of the stack, followed by a new line
+ *_pstr -  prints the string starting at the top of the stack
  *@stack: stack
  *@line_number: line number
  */
@@ -13,7 +13,7 @@ void _pstr(stack_t **stack, unsigned int line_number)
 
 	while (aux)
 	{
-		if (aux->n <= 0 || aux ->n > 127)
+		if (aux->n <= 0 || aux->n > 127)
 			break;
 		putchar(aux->n);
 		aux = aux->next;
