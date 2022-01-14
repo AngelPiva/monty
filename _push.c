@@ -13,6 +13,7 @@ int _push(char **arr, stack_t **stack, unsigned int line_number)
 	int i = 0;
 	char *value = arr[1];
 
+	line_number += 1;
 	if (value == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
