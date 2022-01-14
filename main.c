@@ -23,9 +23,7 @@ int main(int argc, char *argv[])
 	}
 	stack = malloc(sizeof(stack_t));
 	if (!stack)
-	{
 		fprintf(stderr, "Error: malloc failed"), exit(EXIT_FAILURE);
-	}
 	_ofile = fopen(argv[1], "r");
 	if (!_ofile)
 	{
@@ -52,6 +50,7 @@ int main(int argc, char *argv[])
 	free(buffer), free_stack(stack), fclose(_ofile);
 	return (0);
 }
+
 /**
  *identify - identifies commands on the input string.
  *@arr: buffer separated by tokens.
@@ -74,12 +73,12 @@ int identify(char **arr, stack_t **stack, unsigned int line_number)
 	while (identifiers[n].opcode != NULL)
 	{
 		compare = strstr(opcode, identifiers[n].opcode);
-		if (compare != NULL)
+		if (compare != NULL && strlen(opcode) ==
+				strlen(identifiers[n].opcode))
 		{
-			if (strncmp(opcode, "push", 4) == 0)
+			if ((strncmp(opcode, "push", 4) == 0) &&
+					(strlen(opcode) == 4))
 			{
-				if(strlen(opcode) != 4)
-					break;
 				status = _push(arr, stack, line_number);
 				if (status == -1)
 					return (-1);
@@ -92,7 +91,8 @@ int identify(char **arr, stack_t **stack, unsigned int line_number)
 		}
 		n++;
 	}
-	if ((compare == NULL) || ((strncmp(opcode, "push", 4) == 0) && (strlen(opcode) != 4)))
+	if ((compare == NULL) || ((strncmp(opcode, "push", 4) == 0) &&
+				(strlen(opcode) != 4)))
 	{
 		fprintf(stderr, "L<%d>: unknown instruction %s\n", line_number, arr[0]);
 		return (-1);
