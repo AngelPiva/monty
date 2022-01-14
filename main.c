@@ -36,7 +36,10 @@ int main(int argc, char *argv[])
 	{
 		arr = tokenizer(buffer, " \n\t");
 		if (arr == NULL)
+		{
+			line_number++;
 			continue;
+		}
 		status = identify(arr, stack, line_number);
 		if (status == -1)
 		{
@@ -60,7 +63,7 @@ int main(int argc, char *argv[])
 int identify(char **arr, stack_t **stack, unsigned int line_number)
 {
 	int n = 0, status = 0;
-	char *compare = NULL;
+	char *compare = NULL, *opcode = arr[0];
 	instruction_t identifiers[] = {
 	{"push", NULL}, {"pall", _pall}, {"pint", _pint}, {"pop", _pop},
 	{"nop", _nop}, {"swap", _swap}, {"add", _add}, {"sub", _sub},
@@ -70,11 +73,13 @@ int identify(char **arr, stack_t **stack, unsigned int line_number)
 
 	while (identifiers[n].opcode != NULL)
 	{
-		compare = strstr(arr[0], identifiers[n].opcode);
+		compare = strstr(opcode, identifiers[n].opcode);
 		if (compare != NULL)
 		{
-			if (strstr("push", arr[0]) != NULL)
+			if (strncmp(opcode, "push", 4) == 0)
 			{
+				if(strlen(opcode) != 4)
+					break;
 				status = _push(arr, stack, line_number);
 				if (status == -1)
 					return (-1);
@@ -87,7 +92,7 @@ int identify(char **arr, stack_t **stack, unsigned int line_number)
 		}
 		n++;
 	}
-	if (compare == NULL)
+	if ((compare == NULL) || ((strncmp(opcode, "push", 4) == 0) && (strlen(opcode) != 4)))
 	{
 		fprintf(stderr, "L<%d>: unknown instruction %s\n", line_number, arr[0]);
 		return (-1);
